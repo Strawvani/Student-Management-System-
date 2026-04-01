@@ -18,27 +18,6 @@ public class EnrollmentService {
         System.out.println(course.getCourseName() + " is Added Successfully.");
     }
 
-    public void enrollStudent(Student student, String courseCode){
-        Course course = courseRegistry.get(courseCode);
-
-        if (course == null) {
-            throw new EnrollmentException("Course Code# " + courseCode + " not found.");
-        }
-
-        if (course.isFull()){
-            throw new EnrollmentException("Course Code# " + courseCode + " is full.");
-        }
-
-        for (int i = 0; i < course.getEnrolledStudents().size();i++){
-            if (course.getEnrolledStudents().get(i).getStudentID() == student.getStudentID()){
-                throw new EnrollmentException(student.getName() + " is already enrolled in the Course");
-            }
-        }
-
-        course.enrolledStudents.add(student);
-        student.enroll(course);
-        System.out.println(student.getName() + " is now enrolled in " + course.getCode());
-    }
 
     public void listAllStudents (){
         if (students.isEmpty()){
