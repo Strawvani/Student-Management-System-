@@ -70,33 +70,8 @@ public class Main {
 
 
             case 3:
-                int enrolleeID = 0;
-                try {
-                    System.out.println("Enroll Student ID: ");
-                    enrolleeID = Integer.parseInt(scan.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Must be a valid Input");
-                    break;
-                }
-                Student found = null;
-                for (Student student : service.students) {
-                    if (student.getStudentID() == enrolleeID){
-                        found = student;
-                        break;
-                    }
-                }
-                if (found == null){
-                    System.out.println("Student ID: " + enrolleeID + " not found");
-                    break;
-                }
-                System.out.println("Enroll Course Code: ");
-                String enrollCode = scan.nextLine();
-                try {
-                    service.enrollStudent(found,enrollCode);
-                } catch (EnrollmentException enrollmentException){
-                    System.out.println("Error: " + enrollmentException.getMessage());
-                }
-                break;
+
+
 
             case 4:
                 service.listAllStudents();
