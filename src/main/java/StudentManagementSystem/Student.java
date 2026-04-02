@@ -1,7 +1,5 @@
 package StudentManagementSystem;
 
-import java.util.ArrayList;
-
 public class Student extends Person{
 
     private int studentID;
