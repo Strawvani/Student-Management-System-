@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class EnrollmentService {
 
     HashMap<String,Course> courseRegistry = new HashMap<>();
+    ArrayList<Enrollment> enrollmentList = new ArrayList();
     ArrayList<Student> students = new ArrayList<>();
 
     public void addStudent(Student student){
@@ -18,6 +19,11 @@ public class EnrollmentService {
         System.out.println(course.getCourseName() + " is Added Successfully.");
     }
 
+    public void enrollStudent(int studentID, String courseID){
+        Course course = courseRegistry.get(courseID);
+
+
+    }
 
     public void listAllStudents (){
         if (students.isEmpty()){
