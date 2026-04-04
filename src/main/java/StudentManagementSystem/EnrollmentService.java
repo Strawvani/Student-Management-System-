@@ -20,7 +20,8 @@ public class EnrollmentService {
     }
 
     public void enrollStudent(int studentID, String courseID){
-        Course course = courseRegistry.get(courseID);
+        Student foundStudent = null;
+
 
 
     }
