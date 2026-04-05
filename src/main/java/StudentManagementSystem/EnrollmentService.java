@@ -22,6 +22,13 @@ public class EnrollmentService {
     public void enrollStudent(int studentID, String courseID){
         Student foundStudent = null;
 
+        for (Student s : students){
+            if (s.getStudentID() == studentID){
+                foundStudent = s;
+                break;
+            }
+        }
+
         if (foundStudent == null){
             System.out.println(studentID + " not found.");
         }
