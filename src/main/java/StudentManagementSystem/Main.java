@@ -70,8 +70,19 @@ public class Main {
 
 
             case 3:
-
-
+                try {
+                    System.out.println("Student ID: ");
+                    int studentID = Integer.parseInt(scan.nextLine());
+                    System.out.println("Course Code: ");
+                    courseCode = scan.nextLine();
+                    service.enrollStudent(studentID,courseCode);
+                } catch (NumberFormatException e){
+                    System.out.println("Student ID must be an Integer");
+                    break;
+                } catch (EnrollmentException e){
+                    System.out.println("Error " + e.getMessage());
+                }
+                break;
 
             case 4:
                 service.listAllStudents();

@@ -49,12 +49,12 @@ public class EnrollmentService {
 
         for (Enrollment e : enrollmentList){
             if (e.getStudentID() == studentID && e.getCourseID().equals(courseID)){
-                throw new EnrollmentException("Student ID: " + studentID + " is already enrolled in " + courseRegistry.get(courseID));
+                throw new EnrollmentException("Student ID: " + studentID + " is already enrolled in " + courseID);
             }
         }
 
         enrollmentList.add(new Enrollment(studentID,courseID));
-        System.out.println("Student ID: " + studentID + " is successfully enrolled in " + courseRegistry.get(courseID));
+        System.out.println("Student ID: " + studentID + " is successfully enrolled in " + courseID);
 
     }
 
