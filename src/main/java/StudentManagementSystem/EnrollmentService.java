@@ -19,7 +19,16 @@ public class EnrollmentService {
         System.out.println(course.getCourseName() + " is Added Successfully.");
     }
 
-    public void enrollStudent(int studentID, String courseID){
+    public boolean isCourseFull (String courseID){
+        Course course = courseRegistry.get(courseID);
+        int count = 0;
+        for (Enrollment e : enrollmentList){
+            if (e.getCourseID().equals(courseID)) count++;
+        }
+        return count >= course.getMaxCap();
+    }
+
+    public void enrollStudent(int studentID, String courseID) throws EnrollmentException{
         Student foundStudent = null;
 
         for (Student s : students){
@@ -30,11 +39,22 @@ public class EnrollmentService {
         }
 
         if (foundStudent == null){
-            System.out.println(studentID + " not found.");
+           throw new EnrollmentException("Student ID: " + studentID + " doesn't exist.");
         }
 
+        Course course = courseRegistry.get(courseID);
+        if (course == null){
+            throw new EnrollmentException("Course ID: " + courseID + " doesn't exist.");
+        }
 
+        for (Enrollment e : enrollmentList){
+            if (e.getStudentID() == studentID && e.getCourseID().equals(courseID)){
+                throw new EnrollmentException("Student ID: " + studentID + " is already enrolled in " + courseRegistry.get(courseID));
+            }
+        }
 
+        enrollmentList.add(new Enrollment(studentID,courseID));
+        System.out.println("Student ID: " + studentID + " is successfully enrolled in " + courseRegistry.get(courseID));
 
     }
 
