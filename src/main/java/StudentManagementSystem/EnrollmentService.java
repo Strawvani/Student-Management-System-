@@ -2,6 +2,7 @@ package StudentManagementSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class EnrollmentService {
 
@@ -74,12 +75,39 @@ public class EnrollmentService {
     public void listAllCourses (){
         if (courseRegistry.isEmpty()){
             System.out.println("Theres currently no Courses in the list");
+
+        } else {
+            System.out.println("===Course List===");
+            int i  = 0;
+            for (HashMap.Entry<String,Course> entry : courseRegistry.entrySet()){
+            Course value = entry.getValue();
+                System.out.println((i+1) + ". " + value.getCourseName() + " | " + value.getCode() + " | Max Capacity: " + value.getMaxCap());
+            }
         }
     }
 
     public void viewCourseEnrollments (String courseCode){
         Course course = courseRegistry.get(courseCode);
+        if (course == null){
+            System.out.println("Course: " + courseCode + " not found.");
+            return;
+        }
 
+        System.out.println("=== Students enrolled in " + course.getCourseName() + " ===");
+        boolean hasStudents = false;
+
+        for (Enrollment e: enrollmentList){
+            if (e.getCourseID().equals(courseCode)){
+                int i = 0;
+                for (Student s : students){
+                    System.out.println((i+1) +". " + s.getName() + " | " + s.getStudentID());
+                    hasStudents = true;
+                }
+            }
+        }
+        if (!hasStudents){
+            System.out.println("No Students found.");
+        }
     }
 
     public boolean StudentExist(int id){
