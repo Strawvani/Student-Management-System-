@@ -99,10 +99,9 @@ public class EnrollmentService {
 
         System.out.println("=== Students enrolled in " + course.getCourseName() + " ===");
         boolean hasStudents = false;
-
+        int i = 0;
         for (Enrollment e: enrollmentList){
             if (e.getCourseID().equals(courseCode)){
-                int i = 0;
                 for (Student s : students){
                     if (s.getStudentID() == e.getStudentID()){
                         System.out.println((i+1) +". " + s.getName() + " | " + s.getStudentID());
