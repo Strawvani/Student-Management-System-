@@ -48,6 +48,10 @@ public class EnrollmentService {
             throw new EnrollmentException("Course ID: " + courseID + " doesn't exist.");
         }
 
+        if (isCourseFull(courseID)){
+            throw new EnrollmentException("Course " + courseID + " is full.");
+        }
+
         for (Enrollment e : enrollmentList){
             if (e.getStudentID() == studentID && e.getCourseID().equals(courseID)){
                 throw new EnrollmentException("Student ID: " + studentID + " is already enrolled in " + courseID);
@@ -100,9 +104,12 @@ public class EnrollmentService {
             if (e.getCourseID().equals(courseCode)){
                 int i = 0;
                 for (Student s : students){
-                    System.out.println((i+1) +". " + s.getName() + " | " + s.getStudentID());
-                    hasStudents = true;
+                    if (s.getStudentID() == e.getStudentID()){
+                        System.out.println((i+1) +". " + s.getName() + " | " + s.getStudentID());
+                        i++;
+                    }
                 }
+                hasStudents = true;
             }
         }
         if (!hasStudents){
